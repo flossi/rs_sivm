@@ -1,6 +1,6 @@
-#RS_SiVM - Remote Sensing with Simplex Volume Maximization
+## RS_SiVM - Remote Sensing with Simplex Volume Maximization
 
-#Description
+### Description
 ------------
 This project contains a Python class for easy analysis of hyperspectral imagery time series with simplex volume maximisation (SiVM). SiVM is a fast matrix factorization technique for pattern recognition in high-dimensional input data. It can be used to extract characteristic extremes (archetypes) from hyperspectral remote sensing data, allowing the automatic detection of vegetation stress and other information.
 
@@ -18,7 +18,7 @@ Please note that the code has only been tested with Python 3.7.3 on Ubuntu 20.04
 
 Data for testing is available at ...
 
-#Requirements
+### Requirements
 ------------
 
 Python code requires the following modules:
@@ -54,7 +54,7 @@ R code requires the following packages:
  * gamboostLSS 2.0-1.1
  * ggplot2 3.3.2
 
-#Installation
+### Installation
 ------------
 
 Installation has been tested using conda 4.8.3 and Python 3.7.3 on Ubuntu 20.04.2 LTS.
@@ -64,7 +64,7 @@ Installation has been tested using conda 4.8.3 and Python 3.7.3 on Ubuntu 20.04.
 2. The included dependencies "pymf" and "fmch" must be installed manually. Move them into your python environment's "site-packages" folder or another location that is included in your PYTHONPATH.
 
 
-#factorator.py license: BSD 3-Clause
+### factorator.py license: BSD 3-Clause
 ------------
 
 Copyright 2021 Floris Hermanns
@@ -79,7 +79,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#PyMF license: BSD 3-Clause
+### PyMF license: BSD 3-Clause
 ------------
 
 Copyright 2014 Christian Thurau
