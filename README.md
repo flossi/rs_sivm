@@ -2,7 +2,7 @@
 
 ### Description
 ------------
-This project contains a Python class for easy analysis of hyperspectral imagery time series with simplex volume maximisation (SiVM). SiVM is a fast matrix factorization technique for pattern recognition in high-dimensional input data. It can be used to extract characteristic extremes (archetypes) from hyperspectral remote sensing data, allowing the automatic detection of vegetation stress and other information.
+This project contains a Python class for easy analysis of hyperspectral imagery time series with simplex volume maximisation (SiVM). SiVM is a fast matrix factorization technique for pattern recognition in high-dimensional input data. It can be used to extract characteristic extreme spectra (archetypes) from hyperspectral remote sensing data, allowing the automatic detection of vegetation stress and other information.
 
 The Factorator class currently includes methods for
 * preprocessing
@@ -10,18 +10,18 @@ The Factorator class currently includes methods for
 * factorization
 * visualization
 of imagery time series.
-The project also includes R code for the statistical evaluation of resulting vegetation stress products.
+The project also includes a R script for the statistical evaluation of resulting vegetation stress products.
 
 For information about usage of the Factorator class, take a look at the demo file.
 
-Please note that the code has only been tested with Python 3.7.3 on Ubuntu 20.04.2 LTS. Error handling is almost non-existent. So expect bugs and problems in scalability when using code from this project.
-
 Data for testing is available at ...
+
+Please note that the code has only been tested with Python 3.7.3 on Ubuntu 20.04.2 LTS. Error handling is almost non-existent. So expect bugs and problems in scalability when using code from this project.
 
 ### Requirements
 ------------
 
-Python code requires the following modules:
+Python scripts require the following modules:
 
  * pymf 0.3 (not available on conda/pypi, use included version, source: https://github.com/cthurau/pymf)
  * fmch (not available on conda/pypi, use included version)
@@ -34,7 +34,7 @@ Python code requires the following modules:
  * pandas 0.25.2
  * geopandas 0.6.1
  * matplotlib 3.1.1
- * spectral 0.20 (only available on pypi)
+ * spectral 0.20
  * pathlib 2.3.5
  * json 2.0.9
 
@@ -43,7 +43,7 @@ recommended:
 
 The Python Matrix Factorization Module (https://github.com/cthurau/pymf) was ported to Python 3 before usage and is therefore re-distributed in this repository for reproducible results.
 
-R code requires the following packages:
+R script requires the following packages:
 
  * corrplot 0.84
  * ellipse 0.4.2

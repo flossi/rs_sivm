@@ -24,7 +24,7 @@ library(gamboostLSS)
 library(ggplot2)
 
 wdir <- 'path'
-gsbvars <- read.csv(file.path(wdir, 'gsb_eval_vars.csv'))
+gsbvars <- read.csv(file.path(wdir, 'data/gsb_eval_vars.csv'))
 
 #### Correlation analysis ####
 gsbvars0 <- gsbvars
@@ -32,7 +32,7 @@ colnames(gsbvars0) = c('year', ':zeta', ':nu', ':Chl[REopt]', ':Car[REopt]', 'RE
 
 cor_p <- rcorr(as.matrix(gsbvars0[ ,-1]))
 
-png(height=1200, width=1200, pointsize=26, file='/home/hermanns/Nextcloud/Cloud/diss_docs/project01/plots/corr_subset.png', type = 'cairo')
+png(height=1200, width=1200, pointsize=26, file=file.path(wdir, 'corr_subset.png'), type = 'cairo')
 par(xpd = TRUE)
 corrplot.mixed(cor_p$r, cl.pos = 'n', upper = 'ellipse', tl.col = 'black', mar = c(0,0,0,1), outline = T, addgrid.col = NA, tl.pos = 'lt', tl.srt = 50, diag = 'l', p.mat = cor_p$P, sig.level = 0.0001)
 # The p.mat is working but all correlations are highly significant so that no ellipses are crossed out
