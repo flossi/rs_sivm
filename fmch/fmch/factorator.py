@@ -30,7 +30,7 @@ Methods:
         factorization results.
     export_fit_vars(self, vi_list, lag, save): Generate and export a DataFrame
         of factorization results and evaluation variables.
-    rgb(): Generate RGB representations of the preprocessed HSI.
+    rgb(clipq): Generate RGB representations of the preprocessed HSI.
     dlplot(ts, col, rgb, save): Visualize factorization results with double
         layer maps.
 '''
