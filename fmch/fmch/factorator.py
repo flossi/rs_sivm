@@ -71,15 +71,15 @@ class Factorator():
     def __init__(self, wdir, meta, maskfile, do_mkdir = False):
         '''
         Args:
-            wdir (str): The working directory where BSQ files are located.
+            wdir (str): The directory where BSQ files and the geopackage with
+                ROI bounding box are located.
             meta (pandas.DataFrame): Metadata of the hyperspectral image files.
-                Must contain three columns: 'fnames' contains filenames without
-                extension.
-                Column 'site' could be used to differentiate between different
-                research sites. However, processing of multiple sites is
-                currently not implemented. Only used for output file names.
+                    Must contain three columns: 'fnames' contains filenames
+                    without extension.
+                Column 'site' contains the name or abbreviation of the research
+                    site. Only used for output file names!
                 Column 'time' should contain a string identifier for different
-                time steps (can be year, date, etc.).
+                    time steps (can be year, date, etc.).
             do_mkdir (bool): If true, the output directory is created
                 automatically (including parents).
         '''
