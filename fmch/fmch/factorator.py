@@ -293,22 +293,14 @@ class Factorator():
             print('Dataset {}: No bad pixels were found'.format(self.meta['fnames'][I]))
         return mask
     
-    def _resample(self, hsi, I, xy_res):
+    def _resample(self, hsi, xy_res):
         '''
         Uses resize() from skimage.transform to interpolate HSI using cubic
-        splines. This is necessary to align the spatial resolution before
-        factorization.
+        splines to align the spatial resolution before factorization.
         '''
-        if xy_res > hsi.shape[:2]:
-            hsi_R = resize(hsi, (xy_res[0], xy_res[1], len(self.wls[I])), order=3) # order=3 -> bicubic
-            hsi_R[hsi_R < 0] = 0
-            print('Dataset {} was resampled to target resolution {}'.format(self.meta['fnames'][I], xy_res))
-            return hsi_R
-        elif xy_res == hsi.shape[:2]:
-            print('Dataset {} is already at target resolution'.format(self.meta['fnames'][I]))
-            return hsi
-        else:
-            raise ValueError('Resampling target resolution is smaller than the original resolution. Something went wrong!')
+        hsi_R = resize(hsi, (xy_res[0], xy_res[1], len(self.wls[0])), order=3) # order=3 -> bicubic
+        hsi_R[hsi_R < 0] = 0
+        return hsi_R
 
     def preprocess_hsi_1(self, thresh0 = 0.8, thresh1 = 0.8, thresh2 = 1.9,
                          adj_bands = 6, skip_bad_px = True, max_res_ix = None,
@@ -335,7 +327,7 @@ class Factorator():
             max_res_ix (int, optional): By default, all images are resampled
                 to the resolution of the max. resolution image. If you want to
                 change this behaviour, you can use this arg to use a specific
-                meta row index as target resolution object.
+                metadata row index as target resolution object.
             save (bool, optional): If true, preprocessed HSI, pixel masks and
                 the updated wavelength lists are saved to disc.
         '''
@@ -382,19 +374,26 @@ class Factorator():
         better: extent in # of np raster cells) with the metadata. If the user
         supplies one specific image as target, the calculation is skipped.
         '''
-        self.meta['tres'] = pd.Series().astype(object)
         if max_res_ix:
-            self.meta['tres'] = self.hsi_pp0[max_res_ix].shape[:2]
+            tres0 = self.hsi_pp0[max_res_ix].shape[:2]
         else:
             target_res = []
             for cube in self.hsi_pp0:
                 target_res.append(cube.shape[:2])
-            self.meta['tres'] = max(target_res)[0]
+            tres0 = max(target_res)
 
         for i,cube in enumerate(self.hsi_pp0):
-            self.hsi_pp1_R[i] = self._resample(cube, i, self.meta['tres'][i])
+            if tres0 > cube.shape[:2]:
+                print('Dataset {} is resampled to target resolution {}'.format(self.meta['fnames'][i], tres0))
+                self.hsi_pp1_R[i] = self._resample(cube, tres0)
+            elif tres0 == cube.shape[:2]:
+                print('Dataset {} is already at target resolution'.format(self.meta['fnames'][i]))
+                self.hsi_pp1_R[i] = cube
+            else:
+            	raise ValueError('Resampling target resolution is smaller than the original resolution. Something went wrong!')
             # "Resampling the masks" - overwriting
             pz_mask[i] = np.all(np.isnan(self.hsi_pp1_R[i]), axis=2)
+        
         # now overwrite tres from shape to resolution values
         if max_res_ix:
             self.meta['tres'] = self.meta['sres'][max_res_ix]

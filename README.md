@@ -14,7 +14,7 @@ The project also includes a R script for the statistical evaluation of resulting
 
 For information about usage of the Factorator class, take a look at the demo file.
 
-Data for testing is available at ...
+A dataset for testing is available at https://www.ufz.de/record/dmp/archive/10591/de/
 
 Please note that the code has only been tested with Python 3.7.3 on Ubuntu 20.04.2 LTS. Error handling is almost non-existent. So expect bugs and problems in scalability when using code from this project.
 

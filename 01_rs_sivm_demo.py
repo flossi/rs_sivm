@@ -21,7 +21,7 @@ from pathlib import Path
 plt.style.use('seaborn-paper')
 
 #%% Data preparation (adapt as needed)
-wdir0 = Path('path')
+wdir0 = Path('/home/hermanns/Work/Python/data/vnir_atcor')
 fdir0 = Path('resultspath')
 
 # Create metadata table - 3 columns: filename, site name, timestamp
@@ -31,12 +31,12 @@ fn0 = [x.stem for x in list((wdir0/'data').glob('*vnir*.bsq')) if '2017' not in 
 meta1 = pd.DataFrame(data = [[fn, fn[8:11], fn[12:16]] for fn in fn0],
                      columns = ['fnames', 'site', 'time'])
 '''
-saving = False # results are saved in a wdir0 subfolder
+saving = True # results are saved in a wdir0 subfolder
 
 #%% New factorization
 gsb_factor = Factorator(wdir0, meta0, 'tereno_boundaries.gpkg', do_mkdir=saving) # init with metadata
 gsb_factor.load_new_roi(row_ix=2, wls_only=False, save=saving) # set row_ix due to test GPKG with mult. geometries
-gsb_factor.preprocess_hsi_1(skip_bad_px=False, save=saving) # remove bad bands, resampling
+gsb_factor.preprocess_hsi_1(skip_bad_px=True, save=saving) # remove bad bands, resampling
 gsb_factor.preprocess_hsi_2(save=saving) # remove bad pixels, transform
 gsb_factor.factorize_hsi(n_arch=30, na_val=np.nan, save=saving) # factorization
 
